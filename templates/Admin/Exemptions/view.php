@@ -209,13 +209,14 @@
 
     <br /><br />
 <?php if ($exemption->status == 0) {
-    echo '<strong class="text-danger">[Under Review Process]</strong>';
+    echo '<strong class="text-warning">[Under Review Process]</strong>';
 } elseif ($exemption->status == 1) {
-    echo 'Jabatan Hal Ehwal Akademik <br />';
-    echo 'Universiti Teknologi MARA <br />';
-    echo '<strong>COMPUTER PRINTING. NO SIGNATURE NEEDED</strong>';
+    echo '<strong class="text-success">Approved By:</strong> <br />';
+    echo '<strong class="text-success">Jabatan Hal Ehwal Akademik</strong> <br />';
+    echo '<strong class="text-success">Universiti Teknologi MARA</strong> <br />';
+    echo '<strong class="text-success">COMPUTER PRINTING. NO SIGNATURE NEEDED</strong>';
  } else
-    echo 'Rejected';
+    echo '<strong class="text-danger">[Rejected];</strong>';
 ?>
 
 <style>
@@ -248,11 +249,11 @@
                 <tr>
                     <td>Exemption Status</td>
                     <td>
-                    <?php if ($exemption->approval_status == 0){
+                    <?php if ($exemption->status == 0){
 							echo '<span class="badge bg-warning">Pending</span>';
-						}elseif ($exemption->approval_status == 1){
+						}elseif ($exemption->status == 1){
 							echo '<span class="badge bg-success">Approved</span>';
-						}elseif ($exemption->approval_status == 2){
+						}elseif ($exemption->status == 2){
 							echo '<span class="badge bg-danger">Rejected</span>';
 						}else
 							echo '<span class="badge bg-danger">Error</span>';
