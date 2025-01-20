@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var iterable<\App\Model\Entity\Exemption> $exemptions
+ * @var \App\Model\Entity\Exemption $exemption
  */
 	use Cake\Routing\Router;
 	echo $this->Html->css('select2/css/select2.css');
@@ -144,11 +144,11 @@
                     <td><?= h($exemption->kod_terdahulu_6) ?></td>
                     <td><?= h($exemption->nama_kursus_terdahulu_6) ?></td>
                     <td>
-						<?php if ($exemption->approval_status == 0){
+						<?php if ($exemption->status == 0){
 							echo '<span class="badge bg-warning">Pending</span>';
-						}elseif ($exemption->approval_status == 1){
+						}elseif ($exemption->status == 1){
 							echo '<span class="badge bg-success">Approved</span>';
-						}elseif ($exemption->approval_status == 2){
+						}elseif ($exemption->status == 2){
 							echo '<span class="badge bg-danger">Rejected</span>';
 						}else
 							echo '<span class="badge bg-danger">Error</span>';

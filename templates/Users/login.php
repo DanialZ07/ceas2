@@ -8,7 +8,7 @@
         <div class="card-body p-4">
             <!-- Title -->
             <div class="text-center mb-4">
-                <h1 class="display-5 fw-bold text-primary-light">Welcome Back</h1>
+                <h1 class="display-5 fw-bold text-primary-light">Welcome to the UiTM Credit Exemption System</h1>
                 <p class="text-muted">Please login to access your account</p>
             </div>
 

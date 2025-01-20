@@ -65,8 +65,7 @@
 		?>
                 <tr>
 					<th>#</th>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('user_id') ?></th>
+                    <th><?= $this->Paginator->sort('id', 'Name') ?></th>
                     <th><?= $this->Paginator->sort('faculty_id') ?></th>
                     <th><?= $this->Paginator->sort('program_id') ?></th>
                     <th><?= $this->Paginator->sort('semester_id') ?></th>
@@ -74,6 +73,7 @@
                     <th><?= $this->Paginator->sort('matrix') ?></th>
                     <th><?= $this->Paginator->sort('ic_number') ?></th>
                     <th><?= $this->Paginator->sort('phone') ?></th>
+					<th><?= $this->Paginator->sort('address') ?></th>
                     <th><?= $this->Paginator->sort('transcript') ?></th>
                     <th><?= $this->Paginator->sort('transcript_dir') ?></th>
                     <th><?= $this->Paginator->sort('kod_kursus_dipohon_1') ?></th>
@@ -101,8 +101,6 @@
                     <th><?= $this->Paginator->sort('kod_terdahulu_6') ?></th>
                     <th><?= $this->Paginator->sort('nama_kursus_terdahulu_6') ?></th>
                     <th><?= $this->Paginator->sort('status') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -110,15 +108,15 @@
                 <?php foreach ($exemptions as $exemption): ?>
                 <tr>
 				<td><?php echo $counter++ ?></td>
-                    <td><?= $this->Number->format($exemption->id) ?></td>
-                    <td><?= $exemption->hasValue('user') ? $this->Html->link($exemption->user->id, ['controller' => 'Users', 'action' => 'view', $exemption->user->id]) : '' ?></td>
-                    <td><?= $exemption->hasValue('faculty') ? $this->Html->link($exemption->faculty->name, ['controller' => 'Faculties', 'action' => 'view', $exemption->faculty->id]) : '' ?></td>
-                    <td><?= $exemption->hasValue('program') ? $this->Html->link($exemption->program->name, ['controller' => 'Programs', 'action' => 'view', $exemption->program->id]) : '' ?></td>
-                    <td><?= $exemption->hasValue('semester') ? $this->Html->link($exemption->semester->name, ['controller' => 'Semesters', 'action' => 'view', $exemption->semester->id]) : '' ?></td>
-                    <td><?= $exemption->hasValue('campus') ? $this->Html->link($exemption->campus->name, ['controller' => 'Campuses', 'action' => 'view', $exemption->campus->id]) : '' ?></td>
+                    <td><?= ($exemption->user->fullname) ?></td>
+                    <td><?= ($exemption->faculty->name) ?></td>
+                    <td><?= ($exemption->program->name) ?></td>
+                    <td><?= ($exemption->semester->name) ?></td>
+                    <td><?= ($exemption->campus->name) ?></td>
                     <td><?= $this->Number->format($exemption->matrix) ?></td>
                     <td><?= $this->Number->format($exemption->ic_number) ?></td>
                     <td><?= $this->Number->format($exemption->phone) ?></td>
+					<td><?= h($exemption->address) ?></td>
                     <td><?= h($exemption->transcript) ?></td>
                     <td><?= h($exemption->transcript_dir) ?></td>
                     <td><?= h($exemption->kod_kursus_dipohon_1) ?></td>
@@ -145,9 +143,17 @@
                     <td><?= h($exemption->nama_kursus_dipohon_6) ?></td>
                     <td><?= h($exemption->kod_terdahulu_6) ?></td>
                     <td><?= h($exemption->nama_kursus_terdahulu_6) ?></td>
-                    <td><?= $this->Number->format($exemption->status) ?></td>
-                    <td><?= h($exemption->created) ?></td>
-                    <td><?= h($exemption->modified) ?></td>
+                    <td>
+						<?php if ($exemption->status == 0){
+							echo '<span class="badge bg-warning">Pending</span>';
+						}elseif ($exemption->status == 1){
+							echo '<span class="badge bg-success">Approved</span>';
+						}elseif ($exemption->status == 2){
+							echo '<span class="badge bg-danger">Rejected</span>';
+						}else
+							echo '<span class="badge bg-danger">Error</span>';
+						?>
+					</td>
 					<td class="actions text-center">
 						<div class="btn-group shadow" role="group" aria-label="Basic example">
 							<?= $this->Html->link(__('<i class="far fa-folder-open"></i>'), ['action' => 'view', $exemption->id], ['class' => 'btn btn-outline-primary btn-xs', 'escapeTitle' => false]) ?>

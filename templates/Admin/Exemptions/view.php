@@ -4,7 +4,8 @@
  * @var \App\Model\Entity\Exemption $exemption
  */
 ?>
-<!--Header-->
+<div class="container my-5">
+    <!--Header-->
 <div class="row text-body-secondary">
 	<div class="col-10">
 		<h1 class="my-0 page_title"><?php echo $title; ?></h1>
@@ -26,190 +27,245 @@
     </div>
 </div>
 <div class="line mb-4"></div>
-<!--/Header-->
+
+    <!-- Header Section -->
+     <!--/Header-->
 
 <div class="row">
-	<div class="col-md-9">
+	<div class="col-md-15">
 		<div class="card rounded-0 mb-3 bg-body-tertiary border-0 shadow">
 			<div class="card-body text-body-secondary">
-            <h3><?= h($exemption->transcript) ?></h3>
-    <div class="table-responsive">
-        <table class="table">
+           
+<style>
+    .top {
+        width: 100%;
+        margin: auto;
+    }
+    .one {
+        width:70%;
+        height: 25px;
+        background-color: #292983;
+        float:left;
+    }
+    .two {
+        margin-left: 15%;
+        height: 25px;
+        background: #912891;
+    }
+
+    .capital {
+        text-transform: uppercase;
+    }
+
+    .justify {
+        text-align: justify;
+    }
+</style>
+
+<section class="top">
+    <div class="one"></div>
+    <div class="two"></div>
+</section>
+<br/>
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="text-primary"><?= __('Borang PC - Permohonan Pengecualian Kredit') ?></h1>
+            <p class="text-muted"><?= __('UiTM/iCEPS/JPJJ/PC/19') ?></p>
+        </div>
+        <div class="col-md-4 text-end">
+        <?php echo $this->Html->image('../img/surat/iCEPS.png',['width'=>'400px']) ?>
+        </div>
+    </div>
+    <hr />
+
+    <!-- Student Information Section -->
+    <h3 class="text-primary mb-3"><?= __('Maklumat Pelajar') ?></h3>
+<div class="row">
+    <!-- Left Table -->
+<div class="col-md-6">
+    <table class="table table-bordered table-sm capital table_transparent">
+        <tbody>
+            <tr>
+                <th><?= __('Nama Pelajar') ?></th>
+                <td><?= h($exemption->user->fullname ?? 'N/A') ?></td>
+            </tr>
+            <tr>
+                <th><?= __('No. Pelajar') ?></th>
+                <td><?= h($exemption->matrix ?? 'N/A') ?></td>
+            </tr>
+            <tr>
+                <th><?= __('No. Telefon') ?></th>
+                <td><?= h($exemption->phone ?? 'N/A') ?></td>
+            </tr>
+            <tr>
+                <th><?= __('No. Kad Pengenalan') ?></th>
+                <td><?= h($exemption->ic_number ?? 'N/A') ?></td>
+            </tr>
+            <tr class="address-cell">
+                <th><?= __('Alamat Surat Menyurat') ?></th>
+                <td><?= $this->Text->autoParagraph(h($exemption->address ?? 'N/A')) ?></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+    <!-- Right Table -->
+    <div class="col-md-6">
+        <table class="table table-bordered table-sm capital table_transparent">
+            <tbody>
                 <tr>
-                    <th><?= __('User') ?></th>
-                    <td><?= $exemption->hasValue('user') ? $this->Html->link($exemption->user->id, ['controller' => 'Users', 'action' => 'view', $exemption->user->id]) : '' ?></td>
+                    <th><?= __('Fakulti') ?></th>
+                    <td><?= h($exemption->faculty->name ?? 'N/A') ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Faculty') ?></th>
-                    <td><?= $exemption->hasValue('faculty') ? $this->Html->link($exemption->faculty->name, ['controller' => 'Faculties', 'action' => 'view', $exemption->faculty->id]) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Program') ?></th>
-                    <td><?= $exemption->hasValue('program') ? $this->Html->link($exemption->program->name, ['controller' => 'Programs', 'action' => 'view', $exemption->program->id]) : '' ?></td>
+                    <th><?= __('Kod Program') ?></th>
+                    <td><?= h($exemption->program->code ?? 'N/A') ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Semester') ?></th>
-                    <td><?= $exemption->hasValue('semester') ? $this->Html->link($exemption->semester->name, ['controller' => 'Semesters', 'action' => 'view', $exemption->semester->id]) : '' ?></td>
+                    <td><?= h($exemption->semester->name ?? 'N/A') ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Campus') ?></th>
-                    <td><?= $exemption->hasValue('campus') ? $this->Html->link($exemption->campus->name, ['controller' => 'Campuses', 'action' => 'view', $exemption->campus->id]) : '' ?></td>
+                    <th><?= __('IPT Terdahulu') ?></th>
+                    <td><?= h($exemption->campus->name ?? 'N/A') ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Transcript') ?></th>
-                    <td><?= h($exemption->transcript) ?></td>
+                    <th><?= __('Email') ?></th>
+                    <td><?= $this->Text->autoParagraph(h($exemption->user->email ?? 'N/A')) ?></td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .top {
+        width: 100%;
+        margin: auto;
+    }
+    .one {
+        width:70%;
+        height: 25px;
+        background-color: #292983;
+        float:left;
+    }
+    .two {
+        margin-left: 15%;
+        height: 25px;
+        background: #912891;
+    }
+
+    /* Adjust the height of table rows to keep them consistent */
+    .table td, .table th {
+        vertical-align: middle;
+        height: 40px; /* Adjust the height of rows */
+    }
+
+    /* Specifically for Address cell */
+    .address-cell {
+        height: 40px;
+        justify-content: center;
+    }
+</style>
+
+    <!-- Course Information Section -->
+<h3 class="text-primary mt-3 mb-3"><?= __('Maklumat Kursus Yang Dipohon') ?></h3>
+<table class="table table-bordered table-sm capital table_transparent">
+    <thead>
+        <tr>
+            <th><?= __('Bil.') ?></th>
+            <th><?= __('Kod Kursus Dipohon') ?></th>
+            <th><?= __('Nama Kursus Dipohon') ?></th>
+            <th><?= __('Kod Terdahulu') ?></th>
+            <th><?= __('Nama Kursus Terdahulu') ?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php for ($i = 1; $i <= 6; $i++): ?>
+            <tr>
+                <td><?= $i ?></td>
+                <td><?= h($exemption->{'kod_kursus_dipohon_' . $i} ?? '-') ?></td>
+                <td><?= h($exemption->{'nama_kursus_dipohon_' . $i} ?? '-') ?></td>
+                <td><?= h($exemption->{'kod_terdahulu_' . $i} ?? '-') ?></td>
+                <td><?= h($exemption->{'nama_kursus_terdahulu_' . $i} ?? '-') ?></td>
+            </tr>
+        <?php endfor; ?>
+    </tbody>
+</table>
+
+    <!-- Declaration Section -->
+    <div class="mt-5">
+        <p class="fw-bold"><?= __('Saya mengaku bahawa keterangan yang diberi dalam borang ini adalah betul dan benar.') ?></p>
+        <p><?= __('Tandatangan Pelajar: _____________________________') ?></p> 
+        <p><?= __('Tarikh: ') ?><?php echo date('d-m-Y'); ?></p>
+    </div>
+
+    <!-- Footer Section -->
+    <hr />
+    <p class="text-muted text-center"><?= __('Keputusan dibuat oleh Jawatankuasa Akademik Fakulti / Jawatankuasa Akademik Negeri UiTM / Jawatankuasa Akademik iCEPS.') ?></p>
+    <p class="text-center"><?= __('DILULUSKAN / TIDAK DILULUSKAN') ?></p>
+    <p class="text-center"><?= __('Tandatangan Dekan / Rektor / Ketua Eksekutif: _____________________________') ?></p>
+
+    <br /><br />
+<?php if ($exemption->status == 0) {
+    echo '<strong class="text-danger">[Under Review Process]</strong>';
+} elseif ($exemption->status == 1) {
+    echo 'Jabatan Hal Ehwal Akademik <br />';
+    echo 'Universiti Teknologi MARA <br />';
+    echo '<strong>COMPUTER PRINTING. NO SIGNATURE NEEDED</strong>';
+ } else
+    echo 'Rejected';
+?>
+
+<style>
+    .bottom-right {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+</style>
+</div>
+</div>
+
+
+<div class="col-md-4">
+        <div class="card bg-body-tertiary border-0 shadow rounded-0">
+            <div class="card-body">
+
+            <div class="card-title mb-0">Exemption Data</div>
+            <div class="tricolor_line mb-4"></div>
+
+            <table class="table table-sm table-hover">
+                <tr>
+                    <td>Exemption Date</td>
+                    <td><?php echo date('M d, Y (h:i A)', strtotime($exemption->created)); ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Transcript Dir') ?></th>
-                    <td><?= h($exemption->transcript_dir) ?></td>
+                    <td>Approval Date</td>
+                    <td><?php echo date('M d, Y (h:i A)', strtotime($exemption->modified)); ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Kod Kursus Dipohon 1') ?></th>
-                    <td><?= h($exemption->kod_kursus_dipohon_1) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Nama Kursus Dipohon 1') ?></th>
-                    <td><?= h($exemption->nama_kursus_dipohon_1) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Kod Terdahulu 1') ?></th>
-                    <td><?= h($exemption->kod_terdahulu_1) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Nama Kursus Terdahulu 1') ?></th>
-                    <td><?= h($exemption->nama_kursus_terdahulu_1) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Kod Kursus Dipohon 2') ?></th>
-                    <td><?= h($exemption->kod_kursus_dipohon_2) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Nama Kursus Dipohon 2') ?></th>
-                    <td><?= h($exemption->nama_kursus_dipohon_2) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Kod Terdahulu 2') ?></th>
-                    <td><?= h($exemption->kod_terdahulu_2) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Nama Kursus Terdahulu 2') ?></th>
-                    <td><?= h($exemption->nama_kursus_terdahulu_2) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Kod Kursus Dipohon 3') ?></th>
-                    <td><?= h($exemption->kod_kursus_dipohon_3) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Nama Kursus Dipohon 3') ?></th>
-                    <td><?= h($exemption->nama_kursus_dipohon_3) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Kod Terdahulu 3') ?></th>
-                    <td><?= h($exemption->kod_terdahulu_3) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Nama Kursus Terdahulu 3') ?></th>
-                    <td><?= h($exemption->nama_kursus_terdahulu_3) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Kod Kursus Dipohon 4') ?></th>
-                    <td><?= h($exemption->kod_kursus_dipohon_4) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Nama Kursus Dipohon 4') ?></th>
-                    <td><?= h($exemption->nama_kursus_dipohon_4) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Kod Terdahulu 4') ?></th>
-                    <td><?= h($exemption->kod_terdahulu_4) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Nama Kursus Terdahulu 4') ?></th>
-                    <td><?= h($exemption->nama_kursus_terdahulu_4) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Kod Kursus Dipohon 5') ?></th>
-                    <td><?= h($exemption->kod_kursus_dipohon_5) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Nama Kursus Dipohon 5') ?></th>
-                    <td><?= h($exemption->nama_kursus_dipohon_5) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Kod Terdahulu 5') ?></th>
-                    <td><?= h($exemption->kod_terdahulu_5) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Nama Kursus Terdahulu 5') ?></th>
-                    <td><?= h($exemption->nama_kursus_terdahulu_5) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Kod Kursus Dipohon 6') ?></th>
-                    <td><?= h($exemption->kod_kursus_dipohon_6) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Nama Kursus Dipohon 6') ?></th>
-                    <td><?= h($exemption->nama_kursus_dipohon_6) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Kod Terdahulu 6') ?></th>
-                    <td><?= h($exemption->kod_terdahulu_6) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Nama Kursus Terdahulu 6') ?></th>
-                    <td><?= h($exemption->nama_kursus_terdahulu_6) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($exemption->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Matrix') ?></th>
-                    <td><?= $this->Number->format($exemption->matrix) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Ic Number') ?></th>
-                    <td><?= $this->Number->format($exemption->ic_number) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Phone') ?></th>
-                    <td><?= $this->Number->format($exemption->phone) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Status') ?></th>
-                    <td><?= $this->Number->format($exemption->status) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($exemption->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($exemption->modified) ?></td>
+                    <td>Exemption Status</td>
+                    <td>
+                    <?php if ($exemption->approval_status == 0){
+							echo '<span class="badge bg-warning">Pending</span>';
+						}elseif ($exemption->approval_status == 1){
+							echo '<span class="badge bg-success">Approved</span>';
+						}elseif ($exemption->approval_status == 2){
+							echo '<span class="badge bg-danger">Rejected</span>';
+						}else
+							echo '<span class="badge bg-danger">Error</span>';
+						?>
+                    </td>
                 </tr>
             </table>
-            </div>
-            <div class="text">
-                <strong><?= __('Address') ?></strong>
-                <blockquote>
-                    <?= $this->Text->autoParagraph(h($exemption->address)); ?>
-                </blockquote>
-            </div>
 
-			</div>
-		</div>
-		
-
-            
-            
-
-
-		
+            <?php echo $this->Html->link(('Download PDF'),['action'=>'pdf', $exemption->id], ['class' => 'btn btn-sm btn-outline-primary', 'escapeTitle' => false]); ?>
+        </div>
+      </div>
 	</div>
-	<div class="col-md-3">
-	  Column
-	</div>
-</div>
+</br>
 
 
 
