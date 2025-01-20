@@ -134,19 +134,10 @@ $a_name = $this->request->getParam('action');
                                 </li>
                                 <li class="nav-item mb-2"><?= $this->Html->link(__('Frequently Asked Questions'), ['controller' => 'Faqs', 'action' => 'index', 'prefix' => false], ['class' => 'nav-link p-0 text-muted', 'escape' => false]) ?></li>
                                 <li class="nav-item mb-2"><?= $this->Html->link(__('Contact'), ['controller' => 'Contacts', 'action' => 'add', 'prefix' => false], ['class' => 'nav-link p-0 text-muted', 'escape' => false]) ?></li>
-                                <li class="nav-item mb-2"><?= $this->Html->link(__('Documentation Manual'), ['controller' => 'Pages', 'action' => 'manual', 'prefix' => false], ['class' => 'nav-link p-0 text-muted', 'escape' => false]) ?></li>
+                                <li class="nav-item mb-2"><?= $this->Html->link(__('Exemption'), ['controller' => 'Exemptions', 'action' => 'add', 'prefix' => false], ['class' => 'nav-link p-0 text-muted', 'escape' => false]) ?></li>
                             </ul>
                         </div>
 
-                        <div class="col-6 col-md-2 mb-3">
-                            <h5>Important Links</h5>
-                            <ul class="nav flex-column">
-                                <li class="nav-item mb-2"><a href="https://github.com/Asyraf-wa" class="nav-link p-0 text-muted" target="_blank">ReCRUD Github</a></li>
-                                <li class="nav-item mb-2"><a href="https:/codethepixel.com" class="nav-link p-0 text-muted" target="_blank">Code The Pixel</a></li>
-                                <li class="nav-item mb-2"><a href="hhttps://getbootstrap.com/" class="nav-link p-0 text-muted" target="_blank">Bootstrap</a></li>
-                                <li class="nav-item mb-2"><a href="https://cakephp.org/" class="nav-link p-0 text-muted" target="_blank">CakePHP</a></li>
-                            </ul>
-                        </div>
 
                         <div class="col-6 col-md-2 mb-3">
                             <a class="hover-fx"><i class="fa-brands fa-facebook fs-4"></i></a>
@@ -161,7 +152,7 @@ $a_name = $this->request->getParam('action');
 
                         <div class="col-md-5 offset-md-1 mb-3">
                             <form>
-                                <h5>Subscribe to our newsletter</h5>
+                                <h5>Subscribe to our UiTM Newsletter</h5>
                                 <p>Monthly digest of what's new and exciting from us.</p>
                                 <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                                     <label for="newsletter1" class="visually-hidden">Email address</label>
